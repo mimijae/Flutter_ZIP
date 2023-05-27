@@ -54,15 +54,15 @@ Get.to(FirstPage());
 이처럼 엄청 간결해진다.
 
 2. GetX는 페이지나 상태가 변화하면 그 내용을 log를 통해 전달해준다
-![Alt text](getxlog.png)
+![Alt text](images/getxlog.png)
 
 
 # GetX의 주요기능
 ## 1. 상태관리
 ## 2. 라우트관리
 ## 3. 종속성관리
-![Alt text](GetX.png) 
-![Alt text](GetX2.png)
+![Alt text](images/GetX.png) 
+![Alt text](images/GetX2.png)
   
 # 1. 상태관리
  Getx는 데이터를 초기화하고 더 이상 필요하지 않을 때 제거할 수 있는 클래스를 제공하며 사용법은 매우 간단하다. GetxController를 확장하여 클래스를 만들고 거기에 모든 변수와 함수를 삽입하기만 하면 된다. 
@@ -154,7 +154,7 @@ TextButton(
 ```
 final controller = Get.put(Controller());을 선언하지않고 GetBuilder의 초기값을 선언해주어 사용하는 방법도 있다.
 
-![Alt text](%EB%8B%A8%EC%88%9C%20%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC.png)
+![Alt text](images/%EB%8B%A8%EC%88%9C%20%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC.png)
 
 
 
@@ -623,7 +623,7 @@ Dialog를 화면에 띄어준다. 확인/취소 시에 실행할 함수(onConfir
    ```
 아래콘솔창은 GETX에서 상태관리로그를 적어준것이다.
 컨트롤러를 초기화하고 페이지가 닫히면 클로즈해준다
-![Alt text](%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202023-05-27%20213218.png)
+![Alt text](images/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202023-05-27%20213218.png)
 
 
 Get.put은 페이지에 들어감과 동시에 메모리에 올리는 방면에 다른방법은 Get.LazyPut이다. 이는 바로 인스턴스해주는 Get.put과 달리 버튼을 누르는 액션을 취했을때(버튼을 눌렀을때) 그제서야 메모리에 올리고 인스턴스해주는것이다. 
@@ -763,8 +763,8 @@ Controller (컨트롤러):
 
 MVC 패턴은 각 컴포넌트 간의 역할을 명확히 나누어 개발을 진행하므로 코드의 구조화와 유지보수가 용이해집니다. 모델, 뷰, 컨트롤러는 서로 독립적으로 개발될 수 있으며, 이로 인해 개발 작업을 병렬화하고 재사용 가능한 컴포넌트를 만들 수 있습니다.
 
-![Alt text](mvc%201.png)
-![Alt text](MVC%20pattern.png)
+![Alt text](images/mvc%201.png)
+![Alt text](images/MVC%20pattern.png)
 
 # 
 
@@ -900,12 +900,12 @@ class Controller extends GetxController{
 ```
 초기화면
 
-![Alt text](1.png)
+![Alt text](images/1.png)
 
 
 플로팅버튼을 누룬후
 
-![Alt text](2.png)
+![Alt text](images/2.png)
 
 
 # MVVM pattern
@@ -933,7 +933,7 @@ ViewModel (뷰모델):
 모델로부터 데이터를 가져와 뷰에 표시하기 위해 데이터 변환 등의 작업을 수행합니다.
 MVVM 패턴은 데이터 바인딩을 통해 뷰와 뷰모델을 연결하고, 뷰와 뷰모델 간의 의존성을 최소화하여 유연하고 테스트 가능한 코드를 작성할 수 있습니다. 뷰모델은 뷰의 상태를 추상화하고 뷰의 로직을 분리함으로써 UI와 비즈니스 로직 간의 강한 결합을 피하며, 재사용 가능한 컴포넌트를 만들 수 있습니다.
 
-![Alt text](mvvm.png)
+![Alt text](images/mvvm.png)
 # 
 
 GetX로 MVVM을 표현한 예제코드
