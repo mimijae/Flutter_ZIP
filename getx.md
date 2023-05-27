@@ -763,6 +763,9 @@ Controller (컨트롤러):
 
 MVC 패턴은 각 컴포넌트 간의 역할을 명확히 나누어 개발을 진행하므로 코드의 구조화와 유지보수가 용이해집니다. 모델, 뷰, 컨트롤러는 서로 독립적으로 개발될 수 있으며, 이로 인해 개발 작업을 병렬화하고 재사용 가능한 컴포넌트를 만들 수 있습니다.
 
+![Alt text](mvc%201.png)
+![Alt text](MVC%20pattern.png)
+
 # 
 
 간단한 mvc 모델의 코드를 해석해보자
@@ -903,3 +906,186 @@ class Controller extends GetxController{
 플로팅버튼을 누룬후
 
 ![Alt text](2.png)
+
+
+# MVVM pattern
+
+MVVM(Model-View-ViewModel)은 소프트웨어 개발에서 사용되는 소프트웨어 아키텍처 패턴입니다. MVVM은 UI 로직과 비즈니스 로직을 분리하여 애플리케이션의 유지보수성과 테스트 용이성을 향상시킵니다. 다음은 MVVM 패턴의 주요 구성 요소와 역할에 대한 설명입니다:
+
+Model (모델):
+
+데이터와 비즈니스 로직을 담당합니다.
+애플리케이션의 상태, 데이터 유효성 검사, 데이터 액세스 등을 처리합니다.
+데이터의 변화를 알리기 위해 옵저버 패턴 등을 사용할 수 있습니다.
+
+View (뷰):
+
+사용자 인터페이스(UI)를 표시하고 사용자의 입력을 받습니다.
+MVVM에서 뷰는 UI 요소들의 집합으로 구성됩니다.
+뷰는 데이터 바인딩을 통해 ViewModel과의 상호작용을 담당하며, ViewModel의 상태 변화에 따라 UI를 갱신합니다.
+
+ViewModel (뷰모델):
+
+뷰와 모델 사이에서 중재자 역할을 합니다.
+뷰에 대한 비즈니스 로직을 제공하고, 뷰에 표시되는 데이터를 제공합니다.
+뷰와의 양방향 데이터 바인딩을 통해 데이터의 변경을 알립니다.
+사용자 입력에 대한 처리와 비즈니스 로직의 실행을 담당합니다.
+모델로부터 데이터를 가져와 뷰에 표시하기 위해 데이터 변환 등의 작업을 수행합니다.
+MVVM 패턴은 데이터 바인딩을 통해 뷰와 뷰모델을 연결하고, 뷰와 뷰모델 간의 의존성을 최소화하여 유연하고 테스트 가능한 코드를 작성할 수 있습니다. 뷰모델은 뷰의 상태를 추상화하고 뷰의 로직을 분리함으로써 UI와 비즈니스 로직 간의 강한 결합을 피하며, 재사용 가능한 컴포넌트를 만들 수 있습니다.
+
+![Alt text](mvvm.png)
+# 
+
+GetX로 MVVM을 표현한 예제코드
+
+main.dart
+```dart
+import 'package:dev_pattern_sample/src/pattern_home.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is
+        primarySwatch: Colors.blue,
+      ),
+      home: const PatternHome(),
+    );
+  }
+}
+```
+pattern_home.dart
+```dart
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'mvvm_getx/mvvm_getx_controller.dart';
+import 'mvvm_getx/mvvm_getx_view.dart';
+
+class PatternHome extends StatelessWidget {
+  const PatternHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('패턴')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  Get.to(const MVVMGetxView(), binding: BindingsBuilder(
+                    () {
+                      Get.put(MVVMGetxController());
+                    },
+                  ));
+                },
+                child: const Text('MVVM GETX PATTERN')),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+model.dart
+```dart
+class Model {
+  int _count = 0;
+
+  int get counter => _count;
+  int incrementCounter() => ++_count;
+  int decrementCounter() => --_count;
+}
+```
+
+view.dart
+```dart
+import 'package:dev_pattern_sample/src/mvvm_getx/mvvm_getx_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+
+class MVVMGetxView extends GetView<MVVMGetxController> {
+  const MVVMGetxView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('MVC 패턴')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Obx(
+              () => Text(controller.count.toString(),
+                  style: TextStyle(fontSize: 150)),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        controller.incrementCounter();
+                      },
+                      child: const Text('+')),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        controller.decreamentCounter();
+                      },
+                      child: const Text('-')),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+controller.dart
+```dart
+import 'package:dev_pattern_sample/src/model/model.dart';
+import 'package:get/get.dart';
+
+class MVVMGetxController extends GetxController {
+  late Model model;
+  RxInt count = 0.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    model = Model();
+  }
+
+  void incrementCounter() {
+    model.incrementCounter();
+    count(model.counter);
+  }
+
+  void decreamentCounter() {
+    model.decrementCounter();
+    count(model.counter);
+  }
+}
+
+```
+# 
+
