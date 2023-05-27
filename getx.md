@@ -1,5 +1,5 @@
 ## GetX
-
+# 
 Flutter에서 상태관리가 무엇이고 왜 필요하냐?
 
 Flutter에서는 모든것이 Widget이다.
@@ -19,7 +19,7 @@ Flutter에서는 모든것이 Widget이다.
  상태관리 기술을 사용하게 되면 실시간으로 변화하는 데이터에 대한 처리와 여러 컴포넌트에서 공통적으로 사용하는 데이터의 동기화를 아주 쉽고 효율적으로 해결할 수 있다.
 
 Flutter에서 GetX는 강력한 상태 관리 라이브러리 중 하나로, Flutter 애플리케이션에서 상태를 관리하고 업데이트하는 데 도움을 준다.
-
+# 
 ### GetX의 장점
 1. 상태 중앙 관리: GetX를 사용하면 애플리케이션의 상태를 중앙에서 관리할 수 있다. 중앙 상태 관리는 데이터의 일관성과 유지보수성을 향상시킨다
    
@@ -35,7 +35,7 @@ Flutter에서 GetX는 강력한 상태 관리 라이브러리 중 하나로, Flu
    
 7. 다국어 지원: GetX은 다국어 지원을 제공한다. 애플리케이션에서 다국어를 사용해야하는 경우 Get을 사용하여 간단하게 다국어 지원을 구현할 수 있다.
    
- 
+# 
 실제 사용시 장점
 1. 코드의 간결성
 
@@ -54,13 +54,15 @@ Get.to(FirstPage());
 이처럼 엄청 간결해진다.
 
 2. GetX는 페이지나 상태가 변화하면 그 내용을 log를 통해 전달해준다
-![로그](C:\Users\USER\Desktop\images\getxlog.png)
+![Alt text](getxlog.png)
 
 
 # GetX의 주요기능
 ## 1. 상태관리
 ## 2. 라우트관리
 ## 3. 종속성관리
+![Alt text](GetX.png) 
+![Alt text](GetX2.png)
   
 # 1. 상태관리
  Getx는 데이터를 초기화하고 더 이상 필요하지 않을 때 제거할 수 있는 클래스를 제공하며 사용법은 매우 간단하다. GetxController를 확장하여 클래스를 만들고 거기에 모든 변수와 함수를 삽입하기만 하면 된다. 
@@ -80,7 +82,7 @@ GetX에는 두종류의 state management가있음
 
  단순 상태 관리와 반응형 상태 관리의 차이는 반응형 상태 관리의 경우 데이터가 변화가 있을 때만 재랜더링을 하게 되는 반면에 단순 상태 관리는 기존의 데이터와 변경되는 데이터가 같은지 확인하지 않는다.
 
-1. Simple State management (GetBuilder) : 단순 상태 관리
+## 1. Simple State management (GetBuilder) : 단순 상태 관리
 
 simple 방식은 reactive 방식보다 메모리를 적게 사용한다.
 Simple State management는 update()가 호출될 때마다 화면의 변수를 업데이트합니다. "GetBuilder"라는 위젯과 함께 사용됩니다.
@@ -152,7 +154,15 @@ TextButton(
 ```
 final controller = Get.put(Controller());을 선언하지않고 GetBuilder의 초기값을 선언해주어 사용하는 방법도 있다.
 
-2. Reactive State management
+![Alt text](%EB%8B%A8%EC%88%9C%20%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC.png)
+
+
+
+
+
+
+## 2. Reactive State management
+# 
 (GetX/Obx) : 반응형 상태 관리
 
 단순 상태관리와 비교하면 변수를 선언하는 방식과 업데이트 함수 부분이 다르다. 변수를 선언하는 방식은 변수의 타입을 RxInt, RxString등 Rx{타입}의 방식으로 선언하고 변수의 값은 ‘.obs’를 붙이게 된다. 업데이트의 경우 update() 함수를 부르지 않아도 된다.
@@ -247,11 +257,12 @@ GetX<Controller>( // init을 통해 Controller를 등록할 수 있지만 여기
 위처럼 필요한 경우 GetBuilder에서처럼 init을 통해 Controller를 등록할 수 있다.
 
 
-1. Obx()
+2. Obx()
     - Obx() 아래의 모든 위젯은 GetX()와 마찬가지로 controller에서 변경되는 데이터를 실시간으로 반영할 수 있는 상태가 된다. 사용 방식은 거의 동일하지만 차이가 있다면 GetX()와 달리 controller의 이름을 지정할 수가 없어서 Get.find() 방식으로 접근해야 한다.
-
+# 
 
 ## ※마무리하는 간단한 예시
+# 
 페이지 상태 관리는 Flutter 애플리케이션에서 각 페이지 또는 화면의 상태를 관리하고 동기화하는 것을 의미한다. 이를 위해 주로 상태 관리 패턴과 라이브러리(GetX)를 사용한다.
 
 1. GetX의 상태 클래스 생성: GetX의 Controller 클래스를 상속하는 상태 관리 클래스를 생성한다. 이 클래스는 해당 페이지 또는 컴포넌트의 상태를 저장하고 업데이트하는 역할을 한다.
@@ -299,7 +310,7 @@ class MyPage extends StatelessWidget {
 위 코드에서는 MyPageController를 MyPage 클래스에 의존성 주입하고, Obx 위젯을 사용하여 counter 값의 변화를 감지하여 UI를 업데이트한다. 버튼을 누르면 increment 메서드가 호출되어 counter 값이 증가하고, Obx 위젯이 해당 변화를 감지하여 UI를 업데이트한다.
 
 이처럼 GetX를 활용하여 페이지 상태를 관리하면 상태 변화를 효율적으로 감지하고 UI를 업데이트할 수 있다. 
-
+# 
 # ※중요포인트
 BuildContext를 통하지 않는 객체 참조 방식은 예기치 못한 곳에서 문제를 일으킬 가능성이 있습니다. 한 예로 GetX 사용 중 아래와 같이 동일한 클래스의 인스턴스를 두 개 이상 등록할 때 문제가 발생했습니다.
 ```dart
@@ -325,7 +336,7 @@ TabViewModel tab1 = Get.find(tag: 'tab1');
 TabViewModel tab2 = Get.find(tag: 'tab2');
 // ← 뷰모델을 사용하는 자식 위젯에게 태그 값을 매번 전달해야 해서 불편, BuildContext를 사용하는 게 낫지 않을까?
 ```
-
+# 
 
 ### 1.Getter 사용
 
@@ -610,7 +621,9 @@ Dialog를 화면에 띄어준다. 확인/취소 시에 실행할 함수(onConfir
     }	
    ),
    ```
-
+아래콘솔창은 GETX에서 상태관리로그를 적어준것이다.
+컨트롤러를 초기화하고 페이지가 닫히면 클로즈해준다
+![Alt text](%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202023-05-27%20213218.png)
 
 
 Get.put은 페이지에 들어감과 동시에 메모리에 올리는 방면에 다른방법은 Get.LazyPut이다. 이는 바로 인스턴스해주는 Get.put과 달리 버튼을 누르는 액션을 취했을때(버튼을 눌렀을때) 그제서야 메모리에 올리고 인스턴스해주는것이다. 
@@ -676,4 +689,217 @@ UserController userController = await Get.putAsync<UserController>(() async {
 
 ```
 
+
+
+
+아래는 page 초기화단계에서도 할수있다는 예시이다
+```dart
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+void main() {
+  runApp(GetMaterialApp(
+    // It is not mandatory to use named routes, but dynamic urls are interesting.
+    initialRoute: '/home',
+    defaultTransition: Transition.native,
+    translations: MyTranslations(),
+    locale: Locale('pt', 'BR'),
+    getPages: [
+      //Simple GetPage
+      GetPage(name: '/home', page: () => First()),
+      // GetPage with custom transitions and bindings
+      GetPage(
+        name: '/second',
+        page: () => Second(),
+        customTransition: SizeTransitions(),
+        binding: SampleBind(),
+      ),
+      // GetPage with default transitions
+      GetPage(
+        name: '/third',
+        transition: Transition.cupertino,
+        page: () => Third(),
+      ),
+    ],
+  ));
+}
+```
+
+Bindings클래스를 상속받아 사용할수있다
+```dart
+class SampleBind extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<ControllerX>(() => ControllerX());
+  }
+}
+```
+
 # MVC pattern
+
+MVC(Mode-View-Controller)는 소프트웨어 개발에서 사용되는 소프트웨어 디자인 패턴 중 하나입니다. MVC 패턴은 애플리케이션을 세 가지 주요 컴포넌트로 나누어 개발하며, 이러한 컴포넌트 간의 역할과 상호작용을 명확하게 정의하여 코드의 유지보수성과 재사용성을 향상시킵니다.
+
+Model (모델):
+
+애플리케이션의 데이터, 상태, 비즈니스 로직을 담당합니다.
+데이터를 저장하고 조작하는데 필요한 메서드와 속성을 가지고 있습니다.
+모델은 일반적으로 데이터베이스, API, 파일 시스템 등과 상호작용하여 데이터를 가져오고 업데이트합니다.
+데이터 변경 사항을 알리기 위해 옵저버 패턴 등을 사용할 수 있습니다.
+
+View (뷰):
+
+사용자에게 데이터를 표시하고 사용자의 입력을 받는 역할을 합니다.
+일반적으로 UI 요소들을 구성하고 사용자와 상호작용하기 위한 이벤트 핸들러를 가지고 있습니다.
+뷰는 모델의 데이터를 표시하기 위해 모델과 연결되어야 합니다.
+MVC에서 뷰는 모델의 상태 변화를 감지하고 반영하기 위해 옵저버 패턴 등을 사용할 수 있습니다.
+
+Controller (컨트롤러):
+
+모델과 뷰 사이의 중재자 역할을 합니다.
+사용자의 입력을 받아 모델의 상태를 업데이트하고, 그에 따라 뷰를 갱신합니다.
+컨트롤러는 사용자의 액션을 감지하고 그에 대한 적절한 동작을 수행합니다.
+일반적으로 컨트롤러는 뷰와 모델 간의 의존성을 제어하고, 이벤트 핸들링, 데이터 변환 등을 처리합니다.
+
+MVC 패턴은 각 컴포넌트 간의 역할을 명확히 나누어 개발을 진행하므로 코드의 구조화와 유지보수가 용이해집니다. 모델, 뷰, 컨트롤러는 서로 독립적으로 개발될 수 있으며, 이로 인해 개발 작업을 병렬화하고 재사용 가능한 컴포넌트를 만들 수 있습니다.
+
+# 
+
+간단한 mvc 모델의 코드를 해석해보자
+
+main.dart
+```dart
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lecuture2/personal_card.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      home: PersonalCard(),
+    );
+  }
+}
+```
+
+
+model.dart(Model)
+```dart
+class Person{
+  //Person({this.age = 0, this.name = ''});
+  int age = 0;
+  String? name;
+}
+```
+personal_card.dart(View)
+```dart
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lecuture2/controller.dart';
+
+class PersonalCard extends StatelessWidget {
+  PersonalCard({Key? key}) : super(key: key);
+  final Controller controller = Get.put(Controller());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.all(20),
+              width: double.maxFinite,
+              height: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xFF89dad0)),
+              child: Center(
+                  child: GetX<Controller>(
+                builder: (_) => Text(
+                  'Name: ${controller.person().name}',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              )),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              width: double.maxFinite,
+              height: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xFF89dad0)),
+              child: Center(
+                child: Obx(
+                  () => Text(
+                    'Age: ${controller.person().age}',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              width: double.maxFinite,
+              height: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xFF89dad0)),
+              child: Center(
+                child: GetX(
+                  init: Controller(),
+                  builder: (controller) => Text(
+                    'Age: ${Get.find<Controller>().person().age}',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.updateInfo();
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+}
+```
+
+controller.dart(Controller)
+```dart
+import 'package:get/get.dart';
+import 'package:lecuture2/model.dart';
+
+class Controller extends GetxController{
+  final person = Person().obs;
+
+  void updateInfo(){
+    person.update((val) {//여기서 update는 단순 상태관리의 update와 다른 반응형 상태관리의 추가적인 메소드이다.
+      val?.age++;
+      val?.name = 'Coding Chef';
+    });
+  }
+}
+```
+초기화면
+
+![Alt text](1.png)
+
+
+플로팅버튼을 누룬후
+
+![Alt text](2.png)
