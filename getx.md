@@ -138,6 +138,8 @@ class Second extends StatelessWidget {
 먼저 controller를 사용하기 위해 Get.put()으로 controller를 등록한다.GetBuilder()아래의 모든 위젯은 controller에서 변경되는 데이터를 실시간으로 반영할 수 있는 상태가 된다. 
 controller.counter는 controller의 변수를 실시간으로 반영하게 되고 controller.increase()는 controller의 counter 데이터를 실시간으로 증가시키게된다. 만약 GetBuilder를 사용하지 않을 경우 Get.find<[Controller종류]>().[변수 혹은 함수] 로 컨트롤러의 데이터를 실시간 변경 혹은 반영할 수 있다.
 
+> **Get.find을 사용하면 Get.put으로 등록한 컨트롤러를 어디에서든 접근하여 사용할 수 있습니다.**
+
 ### 다른 방법으로
 ```dart
 GetBuilder<Controller>(
@@ -735,6 +737,66 @@ class SampleBind extends Bindings {
   }
 }
 ```
+# static get to
+GetX로 상태를 관리하다보면, Get.find를 사용하여 상태 값에 자주 접근하게 됩니다. 그래서 GetX에서는 다음과 같이 static을 이용하는 패턴을 자주 사용합니다.
+```dart 
+static CountController get to => Get.find<CountController>();
+```
+```dart
+import 'package:get/get.dart';
+
+class CountController extends GetxController {
+  static CountController get to => Get.find<CountController>();
+
+  final count = 0.obs;
+
+  void increment() {
+    count.value++;
+    // count(count.value + 1);
+  }
+}
+```
+```dart
+class MyHomePage extends StatelessWidget {
+  final String title;
+
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Get.put(CountController());
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            Obx(
+              () => Text(
+                "${CountController.to.count.value}",
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: CountController.to.increment,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+```
+이전에 controller 변수를 사용하여 상태값에 접근하던 방식을 다음과 같이 static을 사용하여 변경하였습니다.
+# 
 
 # MVC pattern
 
@@ -907,6 +969,11 @@ class Controller extends GetxController{
 
 ![Alt text](images/2.png)
 
+# ※플러터에서 GetX의 패턴 구조
+GetX는 Reactive State Management, Dependency Injection, and Route Management을 위한 Flutter 패키지입니다. GetX는 MVC(Modal-View-Controller) 패턴을 기반으로 설계되었다.
+![Alt text](images/flutter%20Getx.png)
+> getX는 상태 관리를 위한 전역 공간이다. Class로 구현되는 각 page나 widget끼리 서로 데이터를 주고받을 때, context나 서로 인자를 전달해야 하는 반면, getX는 그럴 필요가 없다.
+- GetX는 이러한 MVC 패턴을 활용하여 애플리케이션의 상태 관리와 종속성 주입을 처리합니다. GetX는 상태를 반응적으로 관리하고, 필요한 곳에서 상태의 변경을 알려주는 기능을 제공합니다. 이를 통해 애플리케이션의 상태 변화에 따라 자동으로 뷰를 업데이트할 수 있습니다.
 
 # MVVM pattern
 
@@ -1022,7 +1089,7 @@ class MVVMGetxView extends GetView<MVVMGetxController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MVC 패턴')),
+      appBar: AppBar(title: const Text('MVVM 패턴')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
