@@ -420,7 +420,43 @@ Get.toNamed()는 라우트 이름을 기반으로 해당 라우트로 이동합�
   ```
   transition: Transition.zoom은 화면이 이동할때의 효과를 추가해주는 기능
   zoom 말고도 여러 다른 모션이 있다.
+ 
 
+## ※라우트 정의하는 방법
+  
+> flutter 기존 route 정의
+```dart
+  void main() {
+  runApp(
+  	MaterialApp(
+    initialRoute: '/',
+    routes: {
+      '/': (context) => MyHomePage(),
+      '/second': (context) => Second(),
+      '/third': (context) => Third(),
+    },
+  }
+```
+> GetX route 정의
+
+```dart 
+void main() {
+  runApp(
+    GetMaterialApp(
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => MyHomePage()),
+        GetPage(name: '/second', page: () => Second()),
+        GetPage(
+          name: '/third',
+          page: () => Third(),
+          transition: Transition.zoom  
+        ),
+      ],
+    )
+  );
+}
+```
 - 미리 설정해둔 이름을 통해 새로운 화면으로 이동한다. 아래의 코드에서는 /next라는 이름을 가진 페이지로 이동한다.
    ```dart
    TextButton(
@@ -798,6 +834,10 @@ class MyHomePage extends StatelessWidget {
 이전에 controller 변수를 사용하여 상태값에 접근하던 방식을 다음과 같이 static을 사용하여 변경하였습니다.
 # 
 
+# GetX의 전체적인 패턴 흐름도
+![Alt text](images/pattern.png)
+![Alt text](images/Get1.png)
+
 # MVC pattern
 
 MVC(Mode-View-Controller)는 소프트웨어 개발에서 사용되는 소프트웨어 디자인 패턴 중 하나입니다. MVC 패턴은 애플리케이션을 세 가지 주요 컴포넌트로 나누어 개발하며, 이러한 컴포넌트 간의 역할과 상호작용을 명확하게 정의하여 코드의 유지보수성과 재사용성을 향상시킵니다.
@@ -999,6 +1039,9 @@ ViewModel (뷰모델):
 사용자 입력에 대한 처리와 비즈니스 로직의 실행을 담당합니다.
 모델로부터 데이터를 가져와 뷰에 표시하기 위해 데이터 변환 등의 작업을 수행합니다.
 MVVM 패턴은 데이터 바인딩을 통해 뷰와 뷰모델을 연결하고, 뷰와 뷰모델 간의 의존성을 최소화하여 유연하고 테스트 가능한 코드를 작성할 수 있습니다. 뷰모델은 뷰의 상태를 추상화하고 뷰의 로직을 분리함으로써 UI와 비즈니스 로직 간의 강한 결합을 피하며, 재사용 가능한 컴포넌트를 만들 수 있습니다.
+
+![Alt text](images/MVVM1.png)
+
 
 ![Alt text](images/mvvm.png)
 # 
