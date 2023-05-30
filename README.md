@@ -1,1 +1,6 @@
-# Flutter_ZIP[readme.md](https://github.com/mimijae/Flutter_ZIP/files/11600981/readme.md)
+# Flutter_ZIP
+
+## ★Flutter Study★
+### 1. UI/UX Design
+### 2. State management
+### 3. Design Pattern
