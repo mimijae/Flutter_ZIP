@@ -1011,7 +1011,7 @@ class Controller extends GetxController{
 
 # ※플러터에서 GetX의 패턴 구조
 GetX는 Reactive State Management, Dependency Injection, and Route Management을 위한 Flutter 패키지입니다. GetX는 MVC(Modal-View-Controller) 패턴을 기반으로 설계되었다.
-![Alt text](images/flutter%20Getx.png)
+
 > getX는 상태 관리를 위한 전역 공간이다. Class로 구현되는 각 page나 widget끼리 서로 데이터를 주고받을 때, context나 서로 인자를 전달해야 하는 반면, getX는 그럴 필요가 없다.
 - GetX는 이러한 MVC 패턴을 활용하여 애플리케이션의 상태 관리와 종속성 주입을 처리합니다. GetX는 상태를 반응적으로 관리하고, 필요한 곳에서 상태의 변경을 알려주는 기능을 제공합니다. 이를 통해 애플리케이션의 상태 변화에 따라 자동으로 뷰를 업데이트할 수 있습니다.
 
